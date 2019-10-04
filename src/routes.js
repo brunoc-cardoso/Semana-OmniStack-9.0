@@ -1,0 +1,12 @@
+'use strict';
+
+const express = require('express');
+const routes = express.Router();
+
+const Session
+
+routes.post('/users', (req, res) => {
+  return res.json(req.body);
+});
+
+module.exports = routes;

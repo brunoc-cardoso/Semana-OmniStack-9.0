@@ -1,14 +1,19 @@
 'use strict';
 
 const express = require('express');
-
-const port = 3000;
+const mongoose = require('mongoose');
+const routes = require('./routes');
 
 const app = express();
+const port = 3000;
 
-app.get('/', (req, res) => {
-  return res.json({ mesage: 'Hello World' });
+mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack9-le6dz.mongodb.net/week09?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
+
+app.use(express.json());
+app.use(routes);
 
 app.listen(port);
 console.log(`application running on port ${port}`);
