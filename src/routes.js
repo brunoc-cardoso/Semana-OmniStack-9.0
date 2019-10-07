@@ -11,11 +11,13 @@ const upload = multer(uploadConfig);
 const sessionController = require('../src/controllers/SessionController');
 const spotController = require('../src/controllers/SpotController');
 const dashboardController = require('../src/controllers/DashboardController');
+const bookingController = require('../src/controllers/BookingController');
 
 // Routes
 routes.post('/sessions', sessionController.store);
 routes.post('/spots', upload.single('thumbnail'), spotController.store);
 routes.get('/spots', spotController.index);
 routes.get('/dashboard', dashboardController.show);
+routes.post('/spots/:spot_id/bookings', bookingController.store);
 
 module.exports = routes;
