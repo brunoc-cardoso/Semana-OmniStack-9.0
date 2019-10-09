@@ -10,7 +10,7 @@ module.exports = {
       const ext = path.extname(file.originalname);
       const name = path.basename(file.originalname, ext);
 
-      callbak(null, `${name} - ${Date.now()}${ext}`)
+      callbak(null, `${name}-${Date.now()}${ext}`)
     }
   })
 };
