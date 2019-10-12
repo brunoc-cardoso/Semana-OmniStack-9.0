@@ -8,16 +8,24 @@ const uploadConfig = require('./config/upload');
 const upload = multer(uploadConfig);
 
 // Controllers
-const sessionController = require('../src/controllers/SessionController');
-const spotController = require('../src/controllers/SpotController');
-const dashboardController = require('../src/controllers/DashboardController');
-const bookingController = require('../src/controllers/BookingController');
+const SessionController = require('../src/controllers/SessionController');
+const SpotController = require('../src/controllers/SpotController');
+const DashboardController = require('../src/controllers/DashboardController');
+const BookingController = require('../src/controllers/BookingController');
+const ApprovalController = require('../src/controllers/ApprovalController');
+const RejectController = require('../src/controllers/RejectController');
 
 // Routes
-routes.post('/sessions', sessionController.store);
-routes.post('/spots', upload.single('thumbnail'), spotController.store);
-routes.get('/spots', spotController.index);
-routes.get('/dashboard', dashboardController.show);
-routes.post('/spots/:spot_id/bookings', bookingController.store);
+routes.post('/sessions', SessionController.store);
+
+routes.post('/spots', upload.single('thumbnail'), SpotController.store);
+routes.get('/spots', SpotController.index);
+
+routes.get('/dashboard', DashboardController.show);
+
+routes.post('/spots/:spot_id/bookings', BookingController.store);
+
+routes.post('/bookings/:booking_id/approvals', ApprovalController.store);
+routes.post('/bookings/:booking_id/rejections', RejectController.store);
 
 module.exports = routes;
